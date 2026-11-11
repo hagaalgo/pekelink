@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pekelink — Todos tus links en un solo lugar</title>
+<meta name="description" content="Pekelink: crea tu minisite tipo link-in-bio y códigos QR que redirigen a tus PDFs, catálogos y redes, todo en un solo link." />
+<style>
+  :root {
+    --bg: #0b0b12;
+    --card: #15151f;
+    --accent: #7c5cff;
+    --accent2: #22d3ee;
+    --text: #f5f5f7;
+    --muted: #9b9bab;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(circle at 20% -10%, rgba(124,92,255,0.35), transparent 45%),
+                radial-gradient(circle at 90% 0%, rgba(34,211,238,0.25), transparent 40%),
+                var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 6vw;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .logo { font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; }
+  .logo span { color: var(--accent2); }
+  nav a.cta {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 64px 6vw 48px;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin-bottom: 20px;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p {
+    color: var(--muted);
+    font-size: 1.15rem;
+    max-width: 560px;
+    margin: 0 auto 32px;
+  }
+  .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    padding: 15px 30px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-block;
+  }
+  .btn-secondary {
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 15px 30px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-block;
+  }
+  .preview {
+    max-width: 320px;
+    margin: 56px auto 0;
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 28px;
+    padding: 32px 24px;
+    box-shadow: 0 30px 80px -20px rgba(124,92,255,0.35);
+  }
+  .preview .avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    margin: 0 auto 12px;
+  }
+  .preview h3 { text-align: center; font-size: 1rem; margin-bottom: 4px; }
+  .preview p.sub { text-align: center; color: var(--muted); font-size: 0.8rem; margin-bottom: 20px; }
+  .preview .link-row {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  section.features {
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 0 6vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 800px) { section.features { grid-template-columns: 1fr; } }
+  .feature-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 28px;
+  }
+  .feature-card .icon { font-size: 1.8rem; margin-bottom: 14px; }
+  .feature-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .feature-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .cta-band {
+    max-width: 900px;
+    margin: 0 auto 90px;
+    padding: 48px 6vw;
+    text-align: center;
+    background: var(--card);
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .cta-band h2 { font-size: 1.8rem; margin-bottom: 14px; }
+  .cta-band p { color: var(--muted); margin-bottom: 24px; }
+  footer {
+    text-align: center;
+    padding: 32px 6vw 48px;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--accent2); }
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo">Peke<span>link</span></div>
+    <nav><a class="cta" href="mailto:hola@pekelink.com">Crear mi Pekelink</a></nav>
+  </header>
+
+  <section class="hero">
+    <h1>Todos tus <span class="grad">links</span>, QR y catálogos<br/>en un solo lugar</h1>
+    <p>Pekelink es tu página link-in-bio: un minisite con todos tus enlaces, y códigos QR que redirigen directo a tus PDFs, catálogos o redes sociales.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="mailto:hola@pekelink.com">Crear mi Pekelink gratis</a>
+      <a class="btn-secondary" href="https://link.pekelink.com/demo">Ver demo</a>
+    </div>
+
+    <div class="preview">
+      <div class="avatar"></div>
+      <h3>Tu Negocio</h3>
+      <p class="sub">link.pekelink.com/tu-negocio</p>
+      <div class="link-row">📄 Catálogo / Menú (PDF)</div>
+      <div class="link-row">📷 Instagram</div>
+      <div class="link-row">🛒 Tienda online</div>
+      <div class="link-row">📱 WhatsApp</div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <div class="icon">🔗</div>
+      <h3>Minisite tipo link-in-bio</h3>
+      <p>Una página con tu marca, logo y todos tus enlaces importantes, lista para compartir en redes.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🔳</div>
+      <h3>Códigos QR inteligentes</h3>
+      <p>Generá un QR que redirige directo a tu PDF, catálogo, menú o cualquier destino — ideal para impresos.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">⚡</div>
+      <h3>Listo en minutos</h3>
+      <p>Sin apps que instalar, sin complicaciones. Mandanos tu info y tu Pekelink está en línea el mismo día.</p>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>¿Listo para tu Pekelink?</h2>
+    <p>Escribinos y armamos tu minisite + QR personalizado.</p>
+    <a class="btn-primary" href="mailto:hola@pekelink.com">Empezar ahora</a>
+  </div>
+
+  <footer>
+    © <%= year %> Pekelink · <a href="https://link.pekelink.com/demo">Ver un ejemplo</a>
+  </footer>
+</body>
+</html>

@@ -31,7 +31,11 @@ function resolveTarget(entry) {
 }
 
 app.get('/', (req, res) => {
-  res.send('<h1>Pekelink</h1><p>Plataforma de minisites y codigos QR.</p>');
+  const host = (req.hostname || '').toLowerCase();
+  if (host.startsWith('qr.') || host.startsWith('link.')) {
+    return res.send('<h1>Pekelink</h1><p>Plataforma de minisites y codigos QR.</p>');
+  }
+  return res.render('landing', { year: new Date().getFullYear() });
 });
 
 // QR domain: qr.pekelink.com/:slug -> redirige al destino (PDF o minisite)
