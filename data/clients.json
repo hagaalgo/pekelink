@@ -1,0 +1,16 @@
+{
+  "demo": {
+    "mode": "minisite",
+    "name": "Cliente Demo",
+    "bio": "Este es un minisite de ejemplo para Pekelink",
+    "avatar": "/avatars/demo.png",
+    "theme": "#111827",
+    "links": [
+      { "label": "Nuestro catálogo (PDF)", "url": "https://link.pekelink.com/r/demo-pdf" }
+    ]
+  },
+  "demo-pdf": {
+    "mode": "redirect",
+    "target": "/pdfs/demo.pdf"
+  }
+}
